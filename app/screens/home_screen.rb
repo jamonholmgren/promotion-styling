@@ -4,29 +4,21 @@ class HomeScreen < PM::Screen
   title "Home"
 
   def on_load
-    set_nav_bar_button :left, title: "Help", action: :help_tapped
-    set_nav_bar_button :right, title: "States", action: :states_tapped
+    set_attributes self.view, main_view_style
+    
+    @scroll = add UIScrollView.alloc.initWithFrame(self.view.bounds)
+    
+    add_to @scroll, UILabel.new, label_style
+    add_to @scroll, Tile.new, { frame: CGRectMake( 20,  40, 130, 130) }
+    add_to @scroll, Tile.new, { frame: CGRectMake(170,  40, 130, 130) }
+    add_to @scroll, Tile.new, { frame: CGRectMake( 20, 190, 130, 130) }
+    add_to @scroll, Tile.new, { frame: CGRectMake(170, 190, 130, 130) }
+    add_to @scroll, Tile.new, { frame: CGRectMake( 20, 340, 130, 130) }
+    add_to @scroll, Tile.new, { frame: CGRectMake(170, 340, 130, 130) }
   end
-
-  def on_presented
-    @view_setup ||= self.set_up_view
-  end
-
-  def set_up_view
-    set_attributes self.view, {
-      background_color: UIColor.grayColor
-    }
-
-    add UILabel.new, label_view # found in HomeStyles module
-
-    true
-  end
-
-  def states_tapped
-    open StatesScreen
-  end
-
-  def help_tapped
-    open_modal HelpScreen.new(nav_bar: true)
+  
+  def will_appear
+    @scroll.frame = self.view.bounds
+    @scroll.contentSize = CGSizeMake(@scroll.frame.size.width, content_height(@scroll) + 20)
   end
 end

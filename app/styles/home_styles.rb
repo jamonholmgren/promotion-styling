@@ -1,17 +1,23 @@
 # This is a fairly limited way to style your application.
-# For more complex apps, we recommend Teacup. https://github.com/rubymotion/teacup
+# For more complex apps, we recommend Teacup https://github.com/rubymotion/teacup
+# Other alternatives include Pixate / NUI.
 module HomeStyles
-  def label_view
+  def main_view_style
     {
-      text: "Welcome to ProMotion!",
-      text_color: UIColor.whiteColor,
+      background_color: hex_color("DBDBDB")
+    }
+  end
+  
+  def label_style
+    {
+      text: "August",
+      text_color: hex_color("8F8F8D"),
       background_color: UIColor.clearColor,
       shadow_color: UIColor.blackColor,
-      number_of_lines: 0,
       text_alignment: UITextAlignmentCenter,
-      font: UIFont.boldSystemFontOfSize(18.0),
-      resize: [ :left, :right, :top ], # ProMotion sugar here
-      frame: CGRectMake(10, 10, 300, 45)
+      font: UIFont.systemFontOfSize(15.0),
+      resize: [ :left, :right, :bottom ], # ProMotion sugar here
+      frame: CGRectMake(10, 0, 300, 35)
     }
   end
 end
