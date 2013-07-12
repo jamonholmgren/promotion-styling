@@ -16,5 +16,6 @@ class Tile < UIView
         shadow_color: UIColor.blackColor.CGColor
       }
     }
+    self
   end
 end
