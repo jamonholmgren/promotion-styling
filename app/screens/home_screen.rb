@@ -18,12 +18,11 @@ class HomeScreen < PM::Screen
     
     set_nav_bar_button :right, system_icon: :add, action: :add_note
     
-    image = UIImage.imageNamed "logo"
-    custom_view = UIView.alloc.initWithFrame CGRectMake(0, 0, image.size.width, image.size.height)
-    custom_view.backgroundColor = UIColor.colorWithPatternImage(image)
-    button = UIBarButtonItem.alloc.initWithCustomView(custom_view)
-    
-    set_nav_bar_button :left, button: button
+    button =  UIButton.buttonWithType(UIButtonTypeCustom)
+    button.setImage(UIImage.imageNamed("logo"), forState:UIControlStateNormal)
+    button.addTarget(self, action: :tapped_logo, forControlEvents:UIControlEventTouchUpInside)
+    button.setFrame CGRectMake(0, 0, 32, 32)
+    set_nav_bar_button :left, button: UIBarButtonItem.alloc.initWithCustomView(button)
   end
   
   def will_appear
@@ -33,5 +32,9 @@ class HomeScreen < PM::Screen
   
   def add_note
     open AddNoteScreen
+  end
+  
+  def tapped_log
+    PM.logger.info "Tapped logo!"
   end
 end
