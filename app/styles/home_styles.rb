@@ -7,7 +7,13 @@ module HomeStyles
       background_color: hex_color("DBDBDB")
     }
   end
-  
+
+  def scroll_view_style
+    {
+      background_color: hex_color("DBDBDB")
+    }
+  end
+
   def label_style
     {
       text: "August",
